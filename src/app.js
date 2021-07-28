@@ -6,16 +6,29 @@ import axios from 'axios';
 import './app.css';
 
 
+const api = axios.create({
+    baseURL:'http://www.devcodecampmusiclibrary.com/'
+})
+
 
 
 
 class App extends Component{
+
+    state= {
+        library:[]
+    }
     constructor(props){
         super(props);
-        this.state = {
-            listOfSongs:[],
-            Title:
-        }
+        api.get('/').then(res =>{
+            console.log(res.data)
+            this.setState({library: res.data})
+        })
+    }
+
+    createLib = async ()=>{
+        let res = await api.post('/',{title:'',id: '',author:''})
+        console.log(res)
     }
 
     componentDidMount(){
@@ -35,6 +48,7 @@ class App extends Component{
     render(){
         return(
             <div className="app">
+            {this.state.library.map(lib => <h1 key={lib.id}>{lib.title}</h1>)}
                 <musicList musicList={this.state.listOfSongs}/>
                 <TitleBar/>
                 <button onClick={this.makeGetRequest}>Remake</button>
