@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
 // import TitleBar from './Components/Title/TitleBar';
 import Song from './Components/song/Song';
 // import musicList from './Components/MusicTable/musicTable';
@@ -21,7 +23,7 @@ class App extends Component{
         super(props);
 
         this.state={
-            library:[]
+            library:[{title:'',artist: '',genre:'',album: '',releaseDate: ''}]
         }
     }
 
@@ -32,6 +34,7 @@ class App extends Component{
 
     componentDidMount(){
         this.makeGetRequest();
+        console.log('mounted')
     }
 
     
@@ -52,13 +55,15 @@ class App extends Component{
 
     render(){
         return(
-            <div>
-                <Song state={this.state}/>
+            <div className="App">
+                <Song  library={this.state.library}/>
+                <button onClick={this.makeGetRequest}>Previous Track</button>
+                <button className="nextButton">Next Track</button>
             </div>
         )
         // return(
-        //     <div className="app">
-        //     <button onClick={this.createLib}>library</button>
+        //     <div className="app"> 
+        //
         //     {this.state.library.map(lib => <h1 key={lib.id}>{lib.title}</h1>)}
         //         <musicList musicList={this.state.listOfSongs}/>
         //         <TitleBar/>

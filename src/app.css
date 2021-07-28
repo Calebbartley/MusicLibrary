@@ -1,8 +1,17 @@
 body{
-    /* background-image: url('images/hosein-zanbori-wvbOWcIDuYg-unsplash.jpg'); */
+    /* background-image: url('images/hosein-zanbori-wvbOWcIDuYg-unsplash.jpg');  */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     display: grid;
     place-content: left;
+}
+
+.center{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
