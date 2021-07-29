@@ -7,6 +7,7 @@ import Song from './Components/song/Song';
 import axios from 'axios';
 
 import './app.css';
+// import SongViewer from './Components/SongViewer/songViewer';
 
 
 // const api = axios.create({
@@ -21,9 +22,9 @@ class App extends Component{
 
     constructor(props){
         super(props);
+         this.state={
+            library:[{id:'',title:'',artist: '',genre:'',album: '',releaseDate: ''}],
 
-        this.state={
-            library:[{title:'',artist: '',genre:'',album: '',releaseDate: ''}]
         }
     }
 
@@ -31,6 +32,30 @@ class App extends Component{
     //     let res = await api.post('/',{title:'',id:'',author:''})
     //     console.log(res)
     // }
+
+
+    nextSong(){
+        let tempSongNumber= this.state.id;
+        tempSongNumber++;
+        if(tempSongNumber === this.state.library.length){
+            tempSongNumber = 0;
+        }
+        
+        this.setState({
+            songNumber:tempSongNumber
+        });
+    }
+
+    previousSong(){
+        let tempSongNumber= this.state.id;
+        tempSongNumber--;
+        if(tempSongNumber<0){
+            tempSongNumber = this.state.library.length - 1;
+        }
+        this.setState({
+            songNumber:tempSongNumber
+        });
+    }
 
     componentDidMount(){
         this.makeGetRequest();
@@ -55,14 +80,16 @@ class App extends Component{
 
     render(){
         return(
+
+        
             <div className="App">
+
                 <Song  library={this.state.library}/>
-                <button onClick={this.makeGetRequest}>Previous Track</button>
-                <button className="nextButton">Next Track</button>
+
             </div>
         )
         // return(
-        //     <div className="app"> 
+        //     <div className="app">
         //
         //     {this.state.library.map(lib => <h1 key={lib.id}>{lib.title}</h1>)}
         //         <musicList musicList={this.state.listOfSongs}/>
@@ -72,6 +99,7 @@ class App extends Component{
         // )
     }
 }
-
+// <button onClick={this.state.library.previousSong}>Previous Track</button>
+//                 <button onClick={this.state.library.nextSong}>Next Track</button>
 
 export default App;

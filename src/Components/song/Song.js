@@ -1,21 +1,30 @@
 import React from 'react';
 const Song = (props) => {
     return (
-
-
-        // <ol>
-        //     {props.libraryarr.map((songs)=>(
-        //         <li>{songs}</li>
-        //     ))}
-        // </ol>
-        <div className="songs">
-            <h1>{props.library[0].title}</h1>
-            <h2>{props.library[0].artist}</h2>
-            <p>{props.library[0].genre}</p>
-            <p>{props.library[0].album}</p>
-            <p>{props.library[0].releaseDate}</p>
+        <div>
+        {props.library.map((song, index) => (
+            <p> {song.title} | {song.artist} | {song.releaseDate} |{song.genre} | {song.album} </p>
+        ))}
         </div>
-     );
+        );
+
+        // <ul>
+        //     {props.library.map((data)=>(
+        //         <li key={data.id}>
+        //             <p>{data.title}</p>
+        //             <p>{data.artist}</p>
+        //         </li>
+        //     ))}
+        // </ul>
+
+        // <div className="songs">
+        //     <h1>{props.library.title}</h1>
+        //     <h2>{props.library.artist}</h2>
+        //     <p>{props.library.genre}</p>
+        //     <p>{props.library.album}</p>
+        //     <p>{props.library.releaseDate}</p>
+        // </div>
+     
 }
 
 export default Song;
