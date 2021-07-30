@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import Song from './Components/song/Song';
+// import ReactDOM from 'react-dom';
+// import Song from './Components/song/Song';
 import axios from 'axios';
 import './app.css';
-import SongViewer from './Components/SongViewer/songViewer';
+
 
 class App extends Component{
 
 
     constructor(props){
         super(props);
+        this.handleChange=this.handleChange.bind(this);
          this.state={
             library:[{id:'',title:'',artist: '',genre:'',album: '',releaseDate: ''}],
-            songNumber:0
+            songNumber:0,
+            songSearch:''
         }
+    }
+    handleChange(e){
+        this.setState({
+            songSearch:e.target.value
+        })
+        console.log(this.state.songSearch)
     }
 
     currentSong(){
@@ -70,26 +78,34 @@ class App extends Component{
         }
     }
 
+    songFilter(){
+        let art = this.state.songSearch.filter((song)=> {
+            if(art === this.state.library.artist){
+                return true
+            }
+            return song
+        })
+    }
+
     render(){
+        const songFilter = this.state.songFilter
         return(
-            
 
             <div className="App">
                 <h1>K&M Music List</h1>
-                <input className="input" type="text" placeholder="Search" />
+                <input className="input" onChange={this.handleChange} value={songFilter}/>
                 <br></br><br></br>
                 <button className="button1" onClick={this.state.library.previousSong}>Last Track</button>
                 <button className="button2" onClick={this.state.library.nextSong}>Next Track</button>
                 <br></br>
-                <Song library={this.state.library} />
-                
                
                 <br></br><br></br>
             </div>
         )
     }
 }
-
+// <Song library={this.state.library}/>
+// <input className="input" type="text" placeholder="Search" />
 // <button onClick={this.state.library.title}>Title</button>
 //                 <button onClick={this.state.library.artist}>Artist</button>
 //                 <button onClick={this.state.library.genre}>Genre</button>
