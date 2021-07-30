@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-// import TitleBar from './Components/Title/TitleBar';
 import Song from './Components/song/Song';
-// import musicList from './Components/MusicTable/musicTable';
 import axios from 'axios';
-
 import './app.css';
-// import SongViewer from './Components/SongViewer/songViewer';
-
-
-// const api = axios.create({
-//     baseURL:'http://www.devcodecampmusiclibrary.com/'
-// })
-
-
-
+import SongViewer from './Components/SongViewer/songViewer';
 
 class App extends Component{
 
@@ -24,30 +12,36 @@ class App extends Component{
         super(props);
          this.state={
             library:[{id:'',title:'',artist: '',genre:'',album: '',releaseDate: ''}],
-
+            songNumber:0
         }
     }
 
-    // createLib = async ()=>{
-    //     let res = await api.post('/',{title:'',id:'',author:''})
-    //     console.log(res)
-    // }
+    currentSong(){
+        let tempSongNumber= this.state.songNumber;
 
+        if(tempSongNumber === this.state.library.length){
+            tempSongNumber = 0;
+        }
+
+        this.setState({
+            songNumber:tempSongNumber
+        });
+    }
 
     nextSong(){
-        let tempSongNumber= this.state.id;
+        let tempSongNumber= this.state.songNumber;
         tempSongNumber++;
         if(tempSongNumber === this.state.library.length){
             tempSongNumber = 0;
         }
-        
+
         this.setState({
             songNumber:tempSongNumber
         });
     }
 
     previousSong(){
-        let tempSongNumber= this.state.id;
+        let tempSongNumber= this.state.songNumber;
         tempSongNumber--;
         if(tempSongNumber<0){
             tempSongNumber = this.state.library.length - 1;
@@ -61,8 +55,6 @@ class App extends Component{
         this.makeGetRequest();
         console.log('mounted')
     }
-
-    
 
     async makeGetRequest(){
         try{
@@ -80,26 +72,30 @@ class App extends Component{
 
     render(){
         return(
+            
 
-        
             <div className="App">
-
-                <Song  library={this.state.library}/>
-
+                <h1>K&M Music List</h1>
+                <input className="input" type="text" placeholder="Search" />
+                <br></br><br></br>
+                <button className="button1" onClick={this.state.library.previousSong}>Last Track</button>
+                <button className="button2" onClick={this.state.library.nextSong}>Next Track</button>
+                <br></br>
+                <Song library={this.state.library} />
+                
+               
+                <br></br><br></br>
             </div>
         )
-        // return(
-        //     <div className="app">
-        //
-        //     {this.state.library.map(lib => <h1 key={lib.id}>{lib.title}</h1>)}
-        //         <musicList musicList={this.state.listOfSongs}/>
-        //         <TitleBar/>
-        //         <h1>Hello World</h1>
-        //     </div>
-        // )
     }
 }
-// <button onClick={this.state.library.previousSong}>Previous Track</button>
-//                 <button onClick={this.state.library.nextSong}>Next Track</button>
+
+// <button onClick={this.state.library.title}>Title</button>
+//                 <button onClick={this.state.library.artist}>Artist</button>
+//                 <button onClick={this.state.library.genre}>Genre</button>
+//                 <button onClick={this.state.library.album}>Album</button>
+//                 <button onClick={() => this.state.library.releaseDate()}>Release Date</button>
+
+// <Song library={this.state.library} previousSong={() => this.previousSong()}  nextSong={() => this.nextSong()}/>
 
 export default App;

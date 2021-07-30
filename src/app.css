@@ -1,17 +1,44 @@
 body{
-    /* background-image: url('images/hosein-zanbori-wvbOWcIDuYg-unsplash.jpg');  */
+    background-image: url('images/hosein-zanbori-wvbOWcIDuYg-unsplash.jpg');
     background-repeat: no-repeat;
+    background-blend-mode: initial;
     background-attachment: fixed;
     background-size: cover;
     display: grid;
     place-content: left;
+    color: white;
+    text-align: center;
+    position:relative;
+    margin-top: 40px;
+    font-size:large;
 }
 
-.center{
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+
+
+.app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-emphasis-color: white;
+    
 }
+
+.button1{
+    margin-right: 20px;
+    background-color: rgb(104, 198, 211);
+}
+
+.button2{
+    margin-left: 20px;
+    background-color: rgb(104, 198, 211);
+}
+
+.input{
+    width: 500px;
+    height: 40px;
+    font-size: 20px;
+}
+
+
+
