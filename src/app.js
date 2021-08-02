@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
-// import Song from './Components/song/Song';
+import Song from './Components/song/Song';
 import axios from 'axios';
 import './app.css';
 
@@ -19,44 +19,9 @@ class App extends Component{
     }
     handleChange(e){
         this.setState({
-            songSearch:e.target.value
+            [this.state.library]:e.target.value
         })
-        console.log(this.state.songSearch)
-    }
-
-    currentSong(){
-        let tempSongNumber= this.state.songNumber;
-
-        if(tempSongNumber === this.state.library.length){
-            tempSongNumber = 0;
-        }
-
-        this.setState({
-            songNumber:tempSongNumber
-        });
-    }
-
-    nextSong(){
-        let tempSongNumber= this.state.songNumber;
-        tempSongNumber++;
-        if(tempSongNumber === this.state.library.length){
-            tempSongNumber = 0;
-        }
-
-        this.setState({
-            songNumber:tempSongNumber
-        });
-    }
-
-    previousSong(){
-        let tempSongNumber= this.state.songNumber;
-        tempSongNumber--;
-        if(tempSongNumber<0){
-            tempSongNumber = this.state.library.length - 1;
-        }
-        this.setState({
-            songNumber:tempSongNumber
-        });
+        console.log('read')
     }
 
     componentDidMount(){
@@ -79,12 +44,13 @@ class App extends Component{
     }
 
     songFilter(){
-        let art = this.state.songSearch.filter((song)=> {
-            if(art === this.state.library.artist){
+        let art = this.state.library.filter(()=> {
+            if(art === this.state.library){
                 return true
             }
-            return song
+            return art
         })
+
     }
 
     render(){
@@ -95,10 +61,7 @@ class App extends Component{
                 <h1>K&M Music List</h1>
                 <input className="input" onChange={this.handleChange} value={songFilter}/>
                 <br></br><br></br>
-                <button className="button1" onClick={this.state.library.previousSong}>Last Track</button>
-                <button className="button2" onClick={this.state.library.nextSong}>Next Track</button>
-                <br></br>
-               
+                <Song library={this.state.library}/>
                 <br></br><br></br>
             </div>
         )
