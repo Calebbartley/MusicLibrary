@@ -19,7 +19,7 @@ class App extends Component{
     }
     handleChange(e){
         this.setState({
-            [this.state.library]:e.target.value
+            [this.state.library]:this.state.library
         })
         console.log('read')
     }
@@ -31,7 +31,7 @@ class App extends Component{
 
     async makeGetRequest(){
         try{
-            let response = await axios.get('http://www.devcodecampmusiclibrary.com/api/music');
+            let response = await axios.get('http://localhost:5000/api/songs');
             console.log(response.data)
             this.setState({
                 library:response.data
@@ -44,11 +44,11 @@ class App extends Component{
     }
 
     songFilter(){
-        let art = this.state.library.filter(()=> {
-            if(art === this.state.library){
+        let art = this.state.library.filter((song)=> {
+            if(song === this.state.library){
                 return true
             }
-            return art
+            console.log(art)
         })
 
     }
