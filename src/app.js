@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import ReactDOM from 'react-dom';
-// import Song from "./Components/song/Song";
+import Song from "./Components/song/Song";
 import axios from "axios";
 import "./app.css";
 
@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       library: [
         {
-          id: "",
+          id: 1,
           title: "",
           artist: "",
           genre: "",
@@ -19,23 +19,15 @@ class App extends Component {
           releaseDate: "",
         },
       ],
-      songNumber: 0,
-      array: [
-        { id: 1, name: "cat" },
-        { id: 2, name: "dog" },
-        { id: 3, name: "horse" },
-        { id: 4, name: "chicken" },
-        { id: 5, name: "duck" },
-      ],
+
       songSearch: "",
     };
   }
   handleChange(e) {
     this.setState({
-      song: this.state.library,
+      songSearch: e.target.value
     });
-    console.log();
-    return this.setState.song;
+    console.log(this.state.songSearch)
   }
 
   componentDidMount() {
@@ -55,24 +47,33 @@ class App extends Component {
     }
   }
 
-
-
-  lister() {
-    this.state.library
-      .filter((song) => song[2] === 'd')
-      .map((song) => <li key={song.id}>{song.title}</li>);
-  }
+//   lister() {
+//     // this.state.library.filter((song) => song[] === '').map((song) => <li key={song.id}>{song.title}</li>);
+//   }
 
   render() {
-    const lister = this.state.lister;
+    const songSearch = this.state.songSearch
+
     return (
       <div className="App">
         <h1>K&M Music List</h1>
+        
         <input
           className="input"
-          value={lister}
+          value={songSearch}
           onChange={this.handleChange}
         />
+            <ul>
+            {
+                (this.state.library.filter((song) => song.title === this.state.songSearch).map((song) => <li key={song.id}>{song.title}{song.album}{song.artist}{song.genre}{song.releaseDate}</li>)) ||
+                (this.state.library.filter((song) => song.album === this.state.songSearch).map((song) => <li key={song.id}>{song.title}{song.album}{song.artist}{song.genre}{song.releaseDate}</li>)) ||
+                (this.state.library.filter((song) => song.artist === this.state.songSearch).map((song) => <li key={song.id}>{song.title}{song.album}{song.artist}{song.genre}{song.releaseDate}</li>))||
+                (this.state.library.filter((song) => song.genre === this.state.songSearch).map((song) => <li key={song.id}>{song.title}{song.album}{song.artist}{song.genre}{song.releaseDate}</li>))||
+                (this.state.library.filter((song) => song.releaseDate === this.state.songSearch).map((song) => <li key={song.id}>{song.title}{song.album}{song.artist}{song.genre}{song.releaseDate}</li>))
+            }
+            </ul>
+
+        <Song library={this.state.library}/>
         <br></br>
         <br></br>
         <br></br>
