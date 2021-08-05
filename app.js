@@ -57,25 +57,21 @@ class App extends Component {
     return (
       <div className="App">
         <h1>K&M Music List</h1>
+        <h3>Search Below: </h3>
           <input
             className="input"
             value={songSearch}
             onChange={this.handleChange}
           />
-            <ul>
-            {   //Pascal said this was good. Each individual item returns a successful query. Something about the || statement is not working.
-                (this.state.library.filter((song) => song.title === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>)) ||
-                (this.state.library.filter((song) => song.artist === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>)) ||
-                (this.state.library.filter((song) => song.album === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>)) ||
-                (this.state.library.filter((song) => song.genre === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>)) ||
-                (this.state.library.filter((song) => song.releaseDate === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>))
-            }
+            <ul> 
+                { this.state.library.filter((song) => song.title === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>) }
+                { this.state.library.filter((song) => song.artist === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>) }
+                { this.state.library.filter((song) => song.album === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>) }
+                { this.state.library.filter((song) => song.genre === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>) }
+                { this.state.library.filter((song) => song.releaseDate === this.state.songSearch).map((song) => <li className="li" key={song.id}><p><strong>Title: </strong>{song.title}</p><p><strong>Album: </strong>{song.album}</p><p><strong>Artist: </strong>{song.artist}</p><p><strong>Genre: </strong>{song.genre}</p><p><strong>Release Date: </strong>{song.releaseDate}</p></li>) }
             </ul>
-          
+        <h1><p>** Full List of Songs: **</p></h1>
         <Song library={this.state.library}/>
-        <br></br>
-        <br></br>
-        <br></br>
         <br></br>
       </div>
     );
