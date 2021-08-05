@@ -1,0 +1,54 @@
+body{
+    background-image: url('images/hosein-zanbori-wvbOWcIDuYg-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-blend-mode: initial;
+    background-attachment: fixed;
+    background-size: cover;
+    display: grid;
+    place-content: left;
+    color: white;
+    text-align: center;
+    position:relative;
+    margin-top: 40px;
+    font-size:large;
+}
+
+
+
+.app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-emphasis-color: white;
+    
+}
+
+.button1{
+    margin-right: 20px;
+    background-color: rgb(104, 198, 211);
+}
+
+.button2{
+    margin-left: 20px;
+    background-color: rgb(104, 198, 211);
+}
+
+.input{
+    width: 500px;
+    height: 40px;
+    font-size: 20px;
+}
+.li {
+    /* list-style-type: none; */
+    color: rgb(104, 198, 211);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+    padding-right: 40px;
+    padding-left: 40px;
+    background-color: black;
+    margin-right: 40px;
+}
