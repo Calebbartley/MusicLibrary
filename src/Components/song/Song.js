@@ -7,11 +7,12 @@ const Song = (props) => {
             {props.library.map((song, index) => (
             <span>
 
-                <h1>{song.title}</h1>
-                <p>{song.artist} </p>
-                <p>{song.releaseDate}</p>
-                <p>{song.genre} </p>
-                <p>{song.album}</p>
+                <h1>Title: {song.title}</h1>
+                <h1>Artist: {song.artist} </h1>
+                <h3>Album: {song.album}</h3>
+                <h3>Genre: {song.genre} </h3>
+                <h3>Release Date: {song.releaseDate}</h3>
+                
                 <br></br>
             </span>
             ))}
